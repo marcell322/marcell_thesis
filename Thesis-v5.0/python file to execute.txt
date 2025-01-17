@@ -1,0 +1,1 @@
+pyinstaller --onefile --noconsole --add-data="C:\Users\Vincentius Marcell\.conda\envs\dtw_mediapipe\Lib\site-packages\mediapipe":"mediapipe" dtw_mediapipe.py
