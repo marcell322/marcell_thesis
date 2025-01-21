@@ -252,25 +252,41 @@ play_audio(y, sr)
 frame_rate = cap.get(cv2.CAP_PROP_FPS)  # Frames per second
 delay = 1 / frame_rate
 
-while cap.isOpened():
-    ret, frame = cap.read()
-    if not ret:
-        break
+# Prepare a matplotlib figure
+fig, (ax_wave, ax_video) = plt.subplots(1, 2, figsize=(12, 6))
 
-    # Display video frame
-    # ax_video.clear()
-    # ax_video.imshow(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-    # ax_video.set_title("Video Frame")
-    # ax_video.axis("off")
+# Compute the Constant-Q Transform
+cqt = librosa.cqt(y, sr=sr, fmin=27.5, bins_per_octave=12)
 
-    # plt.pause(delay)
-    cv2.imshow('',frame)
-    delay = (int)(100 / fps)
-    key = cv2.waitKey(delay)
-    if (cv2.waitKey(5) & 0xFF == 27):
-        break
+# Define function to display audio waveform
+def plot_waveform(ax, y, sr):
+    ax.clear()
+    librosa.display.waveshow(y, sr=sr, ax=ax)
+    ax.set_title("Audio Waveform")
+    ax.set_xlabel("Time (s)")
+    ax.set_ylabel("Amplitude")
 
-# Release resources
-cap.release()
-cv2.destroyAllWindows() 
-sd.stop()  # Stop audio playback
+FMIN = 27.5
+BINS_PER_OCTAVE = 12
+
+n_bins = cqt.shape[0]
+frequencies = FMIN * (2.0 ** (np.arange(n_bins) / BINS_PER_OCTAVE))
+
+# Convert frequencies to MIDI note numbers
+midi_numbers = 69 + 12 * np.log2(frequencies / 440.0)
+
+
+# Get the sequence of MIDI values
+# For each time frame, find the bin with the maximum amplitude
+midi_sequence = []
+cqt_magnitude = np.abs(cqt)  # Get the magnitude of the CQT
+
+for frames in cqt_magnitude.T:  # Iterate over each time frame
+    # print('-')
+    # print(frames)
+    max_bin = np.argmax(frames)  # Find the bin with the highest energy
+    midi_note = round(midi_numbers[max_bin])  # Round to the nearest MIDI note
+    midi_sequence.append(midi_note)
+
+# print("MIDI sequence:", midi_sequence)
+print()
