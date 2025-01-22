@@ -1,0 +1,2 @@
+conda env export > environment.yml
+pip freeze > pip-requirements.txt

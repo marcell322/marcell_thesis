@@ -5,7 +5,6 @@
 
 
 import cv2
-from moviepy.editor import *
 from concurrent.futures import ThreadPoolExecutor
 import mediapipe as mp
 import numpy as np
@@ -655,7 +654,7 @@ position2 = (50, 50)  # Position for the text in the second video
 
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')  # Example codec
-out_final = cv2.VideoWriter(fr'..\media\output_final.avi',fourcc, 20.0, (720, 720))
+# out_final = cv2.VideoWriter(fr'..\media\output_final.avi',fourcc, 20.0, (720, 720))
 total_frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 frame_ctr = 0
 
@@ -809,7 +808,7 @@ def process_final_video_with_progress_bar(cap, out_final):
 
 # # Start the Tkinter event loop
 # root.mainloop()
-process_final_video_with_progress_bar(cap, out)
+process_final_video_with_progress_bar(cap, '')
 
 
 # In[ ]:

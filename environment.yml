@@ -10,9 +10,9 @@ dependencies:
   - brotli-bin=1.1.0=h2466b09_2
   - brotli-python=1.1.0=py39ha51f57c_2
   - bzip2=1.0.8=h2466b09_7
-  - ca-certificates=2024.12.14=h56e8100_0
+  - ca-certificates=2024.12.31=haa95532_0
   - cairo=1.18.2=h5782bbf_1
-  - certifi=2024.12.14=pyhd8ed1ab_0
+  - certifi=2024.12.14=py39haa95532_0
   - cffi=1.17.1=py39ha55e580_0
   - charset-normalizer=3.4.1=pyhd8ed1ab_0
   - contourpy=1.2.0=py39h59b6b97_0
@@ -20,6 +20,7 @@ dependencies:
   - dav1d=1.2.1=hcfcfb64_0
   - decorator=5.1.1=pyhd8ed1ab_1
   - double-conversion=3.3.0=h63175ca_0
+  - et_xmlfile=1.1.0=py39haa95532_0
   - ffmpeg=7.1.0=gpl_ha7a551e_709
   - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
   - font-ttf-inconsolata=3.000=h77eed37_0
@@ -129,13 +130,16 @@ dependencies:
   - openexr=3.3.2=h3924f79_1
   - openh264=2.5.0=ha9db3cd_0
   - openjpeg=2.5.3=h4d64b90_0
+  - openpyxl=3.1.5=py39ha55989b_1
   - openssl=3.4.0=ha4e3fda_1
   - packaging=24.2=pyhd8ed1ab_2
+  - pandas=2.2.3=py39h2366fc2_2
   - pango=1.56.0=h286b592_0
   - pcre2=10.44=h3d7b363_2
   - pip=24.2=py39haa95532_0
   - pixman=0.44.2=had0cd8c_0
   - platformdirs=4.3.6=pyhd8ed1ab_1
+  - plotly=5.24.1=pyhd8ed1ab_1
   - ply=3.11=pyhd8ed1ab_3
   - pooch=1.8.2=pyhd8ed1ab_1
   - pthread-stubs=0.4=h0e40799_1002
@@ -149,7 +153,9 @@ dependencies:
   - pysoundfile=0.12.1=pyhd8ed1ab_3
   - python=3.9.21=h8205438_1
   - python-dateutil=2.9.0.post0=pyhff2d567_1
+  - python-tzdata=2023.3=pyhd3eb1b0_0
   - python_abi=3.9=2_cp39
+  - pytz=2024.1=py39haa95532_0
   - qhull=2020.2=hc790b64_5
   - qt-main=5.15.15=h9151539_2
   - qt6-main=6.8.1=h1259614_2
@@ -165,6 +171,7 @@ dependencies:
   - sqlite=3.45.3=h2bbff1b_0
   - svt-av1=2.3.0=he0c23c2_0
   - tbb=2022.0.0=h62715c5_0
+  - tenacity=9.0.0=py39haa95532_0
   - threadpoolctl=3.5.0=pyhc1e730c_0
   - tk=8.6.13=h5226925_1
   - toml=0.10.2=pyhd8ed1ab_1
