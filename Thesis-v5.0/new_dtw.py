@@ -583,7 +583,7 @@ while (student_cap.isOpened()):
     # Flip the image horizontally for a selfie-view display.
     image = cv2.resize(image, (720, 360)) 
     image_teach = cv2.resize(image_teach, (720, 360)) 
-    score_now = list_score_landmark[frame_count]
+    score_now = list_score_concat[frame_count]
     frame_count += 1
     score_now = math.floor(score_now * 100) / 100
     text_score = "Score: "+str(score_now)
