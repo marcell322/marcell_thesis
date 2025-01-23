@@ -1,2 +1,7 @@
+--create
 conda env create -f environment.yml
 pip install -r pip-requirements.txt
+
+--update
+conda activate dtw_final
+conda env update --file environment.yml --prune
