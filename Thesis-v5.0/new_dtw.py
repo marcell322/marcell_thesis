@@ -530,12 +530,15 @@ list_score_concat = []
 
 student_angle_normalized = (student_angle - student_angle.min()) / (student_angle.max() - student_angle.min())
 teacher_angle_normalized = (teacher_angle - teacher_angle.min()) / (teacher_angle.max() - teacher_angle.min())
-for i in range(len(student_cqt_to_frames)):
+
+student_audio_normalized = (student_cqt_to_frames - student_cqt_to_frames.min()) / (student_cqt_to_frames.max() - student_cqt_to_frames.min())
+teacher_audio_normalized = (teacher_cqt_to_frames - teacher_cqt_to_frames.min()) / (teacher_cqt_to_frames.max() - teacher_cqt_to_frames.min())
+for i in range(len(student_audio_normalized)):
     j = ((i - 1) // WINDOWING_SIZE) * WINDOWING_SIZE
     windowed_student_landmarks = student_angle_normalized[j:j + WINDOWING_SIZE]
     windowed_teacher_landmarks = teacher_angle_normalized[j:j + WINDOWING_SIZE]
-    windowed_student_cqt = student_cqt_to_frames[j:j + WINDOWING_SIZE]
-    windowed_teacher_cqt = teacher_cqt_to_frames[j:j + WINDOWING_SIZE]
+    windowed_student_cqt = student_audio_normalized[j:j + WINDOWING_SIZE]
+    windowed_teacher_cqt = teacher_audio_normalized[j:j + WINDOWING_SIZE]
     d_landmark = dtw_ndim.distance(windowed_student_landmarks, windowed_teacher_landmarks, window=WINDOW_SIZE)
     d_audio = dtw_ndim.distance(windowed_student_cqt,windowed_teacher_cqt, window=WINDOW_SIZE)
     d_audio = dtw_ndim.distance(windowed_teacher_cqt, windowed_student_cqt, window=WINDOW_SIZE)
