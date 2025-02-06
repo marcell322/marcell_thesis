@@ -385,7 +385,7 @@ teacher_out = cv2.VideoWriter(TEACHER_PATH,fourcc, teacher_fr, (teacher_wi, teac
 # Audio Teacher to excel
 teacher_video = VideoFileClip(TEACHER_NAME)
 teacher_audio = teacher_video.audio
-teacher_audio_file = fr'..\media\audio_'+teacher_file+'_audio.wav'
+teacher_audio_file = fr'..\media\audio_'+teacher_file+'.wav'
 extract_audio(TEACHER_NAME,teacher_audio_file)
 teacher_video.close()
 
