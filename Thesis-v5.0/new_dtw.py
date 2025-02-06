@@ -460,7 +460,7 @@ student_out = cv2.VideoWriter(STUDENT_PATH,fourcc, student_fr, (student_wi, stud
 # Audio Student to excel
 student_video = VideoFileClip(STUDENT_NAME)
 student_audio = student_video.audio
-student_audio_file = fr'..\media\audio_'+student_file+'_audio.wav'
+student_audio_file = fr'..\media\audio_'+student_file+'.wav'
 extract_audio(STUDENT_NAME,student_audio_file)
 student_video.close()
 
@@ -609,11 +609,11 @@ while (student_cap.isOpened()):
 
     # Set the position for the bottom-right corner of the top video
     text_x = frame1_width - text_size[0] - 15  # 10 pixels padding from the right
-    text_y = frame1_height - 10  # 10 pixels padding from the bottom
+    text_y = frame1_height + 10  # 10 pixels padding from the bottom
     # Add text at the bottom-right corner of the top video (Video 1)
-    cv2.putText(image, text_score1, (text_x, text_y), font, 0.75, color, thickness, cv2.LINE_AA)
-    cv2.putText(image, text_score2, (text_x, text_y-text_size[1]), font, 0.75, color, thickness, cv2.LINE_AA)
-    cv2.putText(image, text_score3, (text_x, text_y-(2*text_size[1])), font, 0.75, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score1, (text_x, text_y-(2*text_size[1])-15), font, 0.75, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score2, (text_x, text_y-text_size[1]-5), font, 0.75, color, thickness, cv2.LINE_AA)
+    cv2.putText(image_teach, text_score3, (text_x, 50), font, 0.75, color, thickness, cv2.LINE_AA)
     cv2.putText(image, 'Student', position1, font, font_scale, color, thickness, cv2.LINE_AA)
     cv2.putText(image_teach, 'Teacher', position2, font, font_scale, color, thickness, cv2.LINE_AA)
 

@@ -191,6 +191,9 @@ def assign_cqt_to_frames(my_sr,my_fps,my_tot_frames, my_tot_seq,my_midi_seq):
 STUDENT_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Lettre.mp4"
 TEACHER_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
 
+STUDENT_NAME= "D:\Thesis Revision\marcell_thesis\media\FADED - Pianella Piano.mp4"
+TEACHER_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
+
 # start detecting student
 student_cap = cv2.VideoCapture(STUDENT_NAME)
 student_wi = int(student_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -306,8 +309,17 @@ list_score_landmark = []
 list_score_audio = []
 list_score_concat = []
 
-student_angle_normalized = (student_angle - student_angle.min()) / (student_angle.max() - student_angle.min())
-teacher_angle_normalized = (teacher_angle - teacher_angle.min()) / (teacher_angle.max() - teacher_angle.min())
+# student_angle_normalized = (student_angle - student_angle.min()) / (student_angle.max() - student_angle.min())
+# teacher_angle_normalized = (teacher_angle - teacher_angle.min()) / (teacher_angle.max() - teacher_angle.min())
+
+student_angle_normalized = student_angle
+teacher_angle_normalized = teacher_angle
+
+# student_audio_normalized = (student_cqt_to_frames - student_cqt_to_frames.min()) / (student_cqt_to_frames.max() - student_cqt_to_frames.min())
+# teacher_audio_normalized = (teacher_cqt_to_frames - teacher_cqt_to_frames.min()) / (teacher_cqt_to_frames.max() - teacher_cqt_to_frames.min())
+
+student_audio_normalized = student_cqt_to_frames
+teacher_audio_normalized = teacher_cqt_to_frames
 for i in range(len(student_cqt_to_frames)):
     j = ((i - 1) // WINDOWING_SIZE) * WINDOWING_SIZE
     windowed_student_landmarks = student_angle_normalized[j:j + WINDOWING_SIZE]
@@ -362,20 +374,28 @@ while (student_cap.isOpened()):
     # Flip the image horizontally for a selfie-view display.
     image = cv2.resize(image, (720, 360)) 
     image_teach = cv2.resize(image_teach, (720, 360)) 
-    score_now = list_score_landmark[frame_count]
+    score_now1 = list_score_landmark[frame_count]
+    score_now2 = list_score_audio[frame_count]
+    score_now3 = list_score_concat[frame_count]
     frame_count += 1
-    score_now = math.floor(score_now * 100) / 100
-    text_score = "Score: "+str(score_now)
+    score_now1 = math.floor(score_now1 * 100) / 100
+    score_now2 = math.floor(score_now2 * 100) / 100
+    score_now3 = math.floor(score_now3 * 100) / 100
+    text_score1 = "Hand score: "+str(score_now1)
+    text_score2 = "Audio score: "+str(score_now2)
+    text_score3 = "Combine score: "+str(score_now3)
     # Get frame dimensions for bottom-right text placement
     frame1_height, frame1_width = image.shape[:2]
     # Calculate the size of the text to make sure it fits
-    text_size, _ = cv2.getTextSize(text_score, font, font_scale, thickness)
+    text_size, _ = cv2.getTextSize(text_score3, font, font_scale, thickness)
 
     # Set the position for the bottom-right corner of the top video
     text_x = frame1_width - text_size[0] - 10  # 10 pixels padding from the right
     text_y = frame1_height - 10  # 10 pixels padding from the bottom
     # Add text at the bottom-right corner of the top video (Video 1)
-    cv2.putText(image, text_score, (text_x, text_y), font, font_scale, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score1, (text_x, text_y-text_size[1]-5), font, font_scale, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score2, (text_x, text_y), font, font_scale, color, thickness, cv2.LINE_AA)
+    cv2.putText(image_teach, text_score3, (text_x, 50), font, font_scale, color, thickness, cv2.LINE_AA)
     cv2.putText(image, 'Student', position1, font, font_scale, color, thickness, cv2.LINE_AA)
     cv2.putText(image_teach, 'Teacher', position2, font, font_scale, color, thickness, cv2.LINE_AA)
 
