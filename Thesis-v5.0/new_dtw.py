@@ -609,7 +609,7 @@ while (student_cap.isOpened()):
 
     # Set the position for the bottom-right corner of the top video
     text_x = frame1_width - text_size[0] - 15  # 10 pixels padding from the right
-    text_y = frame1_height + 10  # 10 pixels padding from the bottom
+    text_y = frame1_height - 10  # 10 pixels padding from the bottom
     # Add text at the bottom-right corner of the top video (Video 1)
     cv2.putText(image, text_score1, (text_x, text_y-text_size[1]-5), font, 0.75, color, thickness, cv2.LINE_AA)
     cv2.putText(image, text_score2, (text_x, text_y), font, 0.75, color, thickness, cv2.LINE_AA)
