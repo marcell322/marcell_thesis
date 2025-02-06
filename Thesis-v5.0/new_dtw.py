@@ -528,11 +528,17 @@ list_score_landmark = []
 list_score_audio = []
 list_score_concat = []
 
-student_angle_normalized = (student_angle - student_angle.min()) / (student_angle.max() - student_angle.min())
-teacher_angle_normalized = (teacher_angle - teacher_angle.min()) / (teacher_angle.max() - teacher_angle.min())
+# student_angle_normalized = (student_angle - student_angle.min()) / (student_angle.max() - student_angle.min())
+# teacher_angle_normalized = (teacher_angle - teacher_angle.min()) / (teacher_angle.max() - teacher_angle.min())
 
-student_audio_normalized = (student_cqt_to_frames - student_cqt_to_frames.min()) / (student_cqt_to_frames.max() - student_cqt_to_frames.min())
-teacher_audio_normalized = (teacher_cqt_to_frames - teacher_cqt_to_frames.min()) / (teacher_cqt_to_frames.max() - teacher_cqt_to_frames.min())
+student_angle_normalized = student_angle
+teacher_angle_normalized = teacher_angle
+
+# student_audio_normalized = (student_cqt_to_frames - student_cqt_to_frames.min()) / (student_cqt_to_frames.max() - student_cqt_to_frames.min())
+# teacher_audio_normalized = (teacher_cqt_to_frames - teacher_cqt_to_frames.min()) / (teacher_cqt_to_frames.max() - teacher_cqt_to_frames.min())
+
+student_audio_normalized = student_cqt_to_frames
+teacher_audio_normalized = teacher_cqt_to_frames
 for i in range(len(student_audio_normalized)):
     j = ((i - 1) // WINDOWING_SIZE) * WINDOWING_SIZE
     windowed_student_landmarks = student_angle_normalized[j:j + WINDOWING_SIZE]
