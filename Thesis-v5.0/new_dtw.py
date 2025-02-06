@@ -586,20 +586,28 @@ while (student_cap.isOpened()):
     # Flip the image horizontally for a selfie-view display.
     image = cv2.resize(image, (720, 360)) 
     image_teach = cv2.resize(image_teach, (720, 360)) 
-    score_now = list_score_concat[frame_count]
+    score_now1 = list_score_concat[frame_count]
+    score_now2 = list_score_concat[frame_count]
+    score_now3 = list_score_concat[frame_count]
     frame_count += 1
     score_now = math.floor(score_now * 100) / 100
-    text_score = "Score: "+str(score_now)
+    text_score1 = "Hand score: "+str(score_now1)
+    text_score2 = "Audio score: "+str(score_now2)
+    text_score3 = "Combine score: "+str(score_now3)
     # Get frame dimensions for bottom-right text placement
     frame1_height, frame1_width = image.shape[:2]
     # Calculate the size of the text to make sure it fits
-    text_size, _ = cv2.getTextSize(text_score, font, font_scale, thickness)
+    text_size, _ = cv2.getTextSize(text_score1, font, font_scale, thickness)
+    text_size, _ = cv2.getTextSize(text_score2, font, font_scale, thickness)
+    text_size, _ = cv2.getTextSize(text_score3, font, font_scale, thickness)
 
     # Set the position for the bottom-right corner of the top video
     text_x = frame1_width - text_size[0] - 10  # 10 pixels padding from the right
     text_y = frame1_height - 10  # 10 pixels padding from the bottom
     # Add text at the bottom-right corner of the top video (Video 1)
-    cv2.putText(image, text_score, (text_x, text_y), font, font_scale, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score1, (text_x, text_y), font, 0.5, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score2, (text_x, text_y-10), font, 0.5, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score3, (text_x, text_y-20), font, 0.5, color, thickness, cv2.LINE_AA)
     cv2.putText(image, 'Student', position1, font, font_scale, color, thickness, cv2.LINE_AA)
     cv2.putText(image_teach, 'Teacher', position2, font, font_scale, color, thickness, cv2.LINE_AA)
 
