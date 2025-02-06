@@ -590,7 +590,9 @@ while (student_cap.isOpened()):
     score_now2 = list_score_concat[frame_count]
     score_now3 = list_score_concat[frame_count]
     frame_count += 1
-    score_now = math.floor(score_now * 100) / 100
+    score_now1 = math.floor(score_now1 * 100) / 100
+    score_now2 = math.floor(score_now2 * 100) / 100
+    score_now3 = math.floor(score_now3 * 100) / 100
     text_score1 = "Hand score: "+str(score_now1)
     text_score2 = "Audio score: "+str(score_now2)
     text_score3 = "Combine score: "+str(score_now3)
@@ -598,8 +600,6 @@ while (student_cap.isOpened()):
     frame1_height, frame1_width = image.shape[:2]
     # Calculate the size of the text to make sure it fits
     text_size, _ = cv2.getTextSize(text_score1, font, font_scale, thickness)
-    text_size, _ = cv2.getTextSize(text_score2, font, font_scale, thickness)
-    text_size, _ = cv2.getTextSize(text_score3, font, font_scale, thickness)
 
     # Set the position for the bottom-right corner of the top video
     text_x = frame1_width - text_size[0] - 10  # 10 pixels padding from the right
