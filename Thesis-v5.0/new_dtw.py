@@ -567,7 +567,7 @@ teacher_cap = cv2.VideoCapture(TEACHER_PATH)
 font = cv2.FONT_HERSHEY_SIMPLEX
 font_scale = 1
 color = (255, 255, 255)  # White color for the text
-thickness = 2
+thickness = 1
 position1 = (50, 50)  # Position for the text in the first video
 position2 = (50, 50)  # Position for the text in the second video
 frame_count = 0
@@ -599,15 +599,15 @@ while (student_cap.isOpened()):
     # Get frame dimensions for bottom-right text placement
     frame1_height, frame1_width = image.shape[:2]
     # Calculate the size of the text to make sure it fits
-    text_size, _ = cv2.getTextSize(text_score1, font, 0.5, thickness)
+    text_size, _ = cv2.getTextSize(text_score3, font, 0.75, thickness)
 
     # Set the position for the bottom-right corner of the top video
-    text_x = frame1_width - text_size[0] - 10  # 10 pixels padding from the right
+    text_x = frame1_width - text_size[0] - 15  # 10 pixels padding from the right
     text_y = frame1_height - 10  # 10 pixels padding from the bottom
     # Add text at the bottom-right corner of the top video (Video 1)
-    cv2.putText(image, text_score1, (text_x, text_y), font, 0.5, color, thickness, cv2.LINE_AA)
-    cv2.putText(image, text_score2, (text_x, text_y-text_size[1]), font, 0.5, color, thickness, cv2.LINE_AA)
-    cv2.putText(image, text_score3, (text_x, text_y-text_size[1]), font, 0.5, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score1, (text_x, text_y), font, 0.75, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score2, (text_x, text_y-text_size[1]), font, 0.75, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score3, (text_x, text_y-(2*text_size[1])), font, 0.75, color, thickness, cv2.LINE_AA)
     cv2.putText(image, 'Student', position1, font, font_scale, color, thickness, cv2.LINE_AA)
     cv2.putText(image_teach, 'Teacher', position2, font, font_scale, color, thickness, cv2.LINE_AA)
 
@@ -626,15 +626,15 @@ def Close(root):
 
 root = tk.Tk()
 
-landmark_score_label = tk.Label(root, text="Landmark Score:"+str(spit_landmark))
+landmark_score_label = tk.Label(root, text="Landmark Score:"+str(math.floor(spit_landmark * 100) / 100))
 
 landmark_score_label.pack()
 
-audio_score_label = tk.Label(root, text="Audio Score:"+str(spit_audio))
+audio_score_label = tk.Label(root, text="Audio Score:"+str(math.floor(spit_audio * 100) / 100))
 
 audio_score_label.pack()
 
-combine_score_label = tk.Label(root, text="Combine Score:"+str(spit_concat))
+combine_score_label = tk.Label(root, text="Combine Score:"+str(math.floor(spit_concat * 100) / 100))
 
 combine_score_label.pack()
 
