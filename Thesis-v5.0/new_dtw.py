@@ -599,15 +599,15 @@ while (student_cap.isOpened()):
     # Get frame dimensions for bottom-right text placement
     frame1_height, frame1_width = image.shape[:2]
     # Calculate the size of the text to make sure it fits
-    text_size, _ = cv2.getTextSize(text_score1, font, font_scale, thickness)
+    text_size, _ = cv2.getTextSize(text_score1, font, 0.5, thickness)
 
     # Set the position for the bottom-right corner of the top video
     text_x = frame1_width - text_size[0] - 10  # 10 pixels padding from the right
     text_y = frame1_height - 10  # 10 pixels padding from the bottom
     # Add text at the bottom-right corner of the top video (Video 1)
     cv2.putText(image, text_score1, (text_x, text_y), font, 0.5, color, thickness, cv2.LINE_AA)
-    cv2.putText(image, text_score2, (text_x, text_y-10), font, 0.5, color, thickness, cv2.LINE_AA)
-    cv2.putText(image, text_score3, (text_x, text_y-20), font, 0.5, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score2, (text_x, text_y-15), font, 0.5, color, thickness, cv2.LINE_AA)
+    cv2.putText(image, text_score3, (text_x, text_y-25), font, 0.5, color, thickness, cv2.LINE_AA)
     cv2.putText(image, 'Student', position1, font, font_scale, color, thickness, cv2.LINE_AA)
     cv2.putText(image_teach, 'Teacher', position2, font, font_scale, color, thickness, cv2.LINE_AA)
 
