@@ -188,11 +188,11 @@ def assign_cqt_to_frames(my_sr,my_fps,my_tot_frames, my_tot_seq,my_midi_seq):
 
     return frame_cqt_indices
 
-# STUDENT_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\Fur Elise - Lettre.mp4"
-# TEACHER_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
-
-STUDENT_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\FADED - Pianella Piano.mp4"
+STUDENT_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\Fur Elise - Lettre.mp4"
 TEACHER_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
+
+# STUDENT_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\FADED - Pianella Piano.mp4"
+# TEACHER_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
 
 # start detecting student
 student_cap = cv2.VideoCapture(STUDENT_NAME)
@@ -309,17 +309,17 @@ list_score_landmark = []
 list_score_audio = []
 list_score_concat = []
 
-# student_angle_normalized = (student_angle - student_angle.min()) / (student_angle.max() - student_angle.min())
-# teacher_angle_normalized = (teacher_angle - teacher_angle.min()) / (teacher_angle.max() - teacher_angle.min())
+student_angle_normalized = (student_angle - student_angle.min()) / (student_angle.max() - student_angle.min())
+teacher_angle_normalized = (teacher_angle - teacher_angle.min()) / (teacher_angle.max() - teacher_angle.min())
 
-student_angle_normalized = student_angle
-teacher_angle_normalized = teacher_angle
+# student_angle_normalized = student_angle
+# teacher_angle_normalized = teacher_angle
 
-# student_audio_normalized = (student_cqt_to_frames - student_cqt_to_frames.min()) / (student_cqt_to_frames.max() - student_cqt_to_frames.min())
-# teacher_audio_normalized = (teacher_cqt_to_frames - teacher_cqt_to_frames.min()) / (teacher_cqt_to_frames.max() - teacher_cqt_to_frames.min())
+student_audio_normalized = (student_cqt_to_frames - student_cqt_to_frames.min()) / (student_cqt_to_frames.max() - student_cqt_to_frames.min())
+teacher_audio_normalized = (teacher_cqt_to_frames - teacher_cqt_to_frames.min()) / (teacher_cqt_to_frames.max() - teacher_cqt_to_frames.min())
 
-student_audio_normalized = student_cqt_to_frames
-teacher_audio_normalized = teacher_cqt_to_frames
+# student_audio_normalized = student_cqt_to_frames
+# teacher_audio_normalized = teacher_cqt_to_frames
 for i in range(len(student_cqt_to_frames)):
     j = ((i - 1) // WINDOWING_SIZE) * WINDOWING_SIZE
     windowed_student_landmarks = student_angle_normalized[j:j + WINDOWING_SIZE]
@@ -395,7 +395,7 @@ while (student_cap.isOpened()):
     # Add text at the bottom-right corner of the top video (Video 1)
     cv2.putText(image, text_score1, (text_x, text_y-text_size[1]-5), font, font_scale, color, thickness, cv2.LINE_AA)
     cv2.putText(image, text_score2, (text_x, text_y), font, font_scale, color, thickness, cv2.LINE_AA)
-    cv2.putText(image_teach, text_score3, (text_x, 50), font, font_scale, color, thickness, cv2.LINE_AA)
+    cv2.putText(image_teach, text_score3, (text_x, 25), font, font_scale, color, thickness, cv2.LINE_AA)
     cv2.putText(image, 'Student', position1, font, font_scale, color, thickness, cv2.LINE_AA)
     cv2.putText(image_teach, 'Teacher', position2, font, font_scale, color, thickness, cv2.LINE_AA)
 
@@ -403,8 +403,6 @@ while (student_cap.isOpened()):
     canvas = cv2.vconcat([image, image_teach])
 
     cv2.imshow('MediaPipe Hands', canvas)
-    
-    # out_final.write(canvas)  
 
     if (cv2.waitKey(5) & 0xFF == 27):
         break
