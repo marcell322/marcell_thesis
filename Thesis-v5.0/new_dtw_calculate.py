@@ -188,8 +188,8 @@ def assign_cqt_to_frames(my_sr,my_fps,my_tot_frames, my_tot_seq,my_midi_seq):
 
     return frame_cqt_indices
 
-STUDENT_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Lettre.mp4"
-TEACHER_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
+# STUDENT_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Lettre.mp4"
+# TEACHER_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
 
 STUDENT_NAME= "D:\Thesis Revision\marcell_thesis\media\FADED - Pianella Piano.mp4"
 TEACHER_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
@@ -205,7 +205,7 @@ student_file = Path(STUDENT_NAME).stem
 STUDENT_PATH = fr'..\media\mp_'+student_file+'.mp4'
 
 # Audio Student to excel
-student_audio_file = fr'..\media\audio_'+student_file+'_audio.wav'
+student_audio_file = fr'..\media\audio_'+student_file+'.wav'
 
 student_y, student_sr = librosa.load(student_audio_file, sr=None)
 
@@ -260,7 +260,7 @@ teacher_file = Path(TEACHER_NAME).stem
 TEACHER_PATH = fr'..\media\mp_'+teacher_file+'.mp4'
 
 # Audio Teacher to excel
-teacher_audio_file = fr'..\media\audio_'+teacher_file+'_audio.wav'
+teacher_audio_file = fr'..\media\audio_'+teacher_file+'.wav'
 
 teacher_y, teacher_sr = librosa.load(teacher_audio_file, sr=None)
 
