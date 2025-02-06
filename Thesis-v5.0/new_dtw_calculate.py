@@ -188,11 +188,11 @@ def assign_cqt_to_frames(my_sr,my_fps,my_tot_frames, my_tot_seq,my_midi_seq):
 
     return frame_cqt_indices
 
-# STUDENT_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Lettre.mp4"
-# TEACHER_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
+# STUDENT_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\Fur Elise - Lettre.mp4"
+# TEACHER_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
 
-STUDENT_NAME= "D:\Thesis Revision\marcell_thesis\media\FADED - Pianella Piano.mp4"
-TEACHER_NAME= "D:\Thesis Revision\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
+STUDENT_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\FADED - Pianella Piano.mp4"
+TEACHER_NAME= "D:\(0) Thesis\Thesis\marcell_thesis\media\Fur Elise - Paul Barton.mp4"
 
 # start detecting student
 student_cap = cv2.VideoCapture(STUDENT_NAME)
